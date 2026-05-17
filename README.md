@@ -279,13 +279,13 @@ sudo apt install libfuse3-dev fuse3 python3-pip -y
 pip install gdown --break-system-packages
 ```
 
-### Poin A — Download, Extract, Hapus Zip
+### Poin A — Download file amba yg merupakan file zip, extract, hapus Zip
 
 ```bash
 cd ~/SISOP-4-2026-IT-073/soal1
 
 # Download dari Google Drive
-~/.local/bin/gdown "1nLXFhptDo2mnUlZsw8pTWyAVpV49W20U" -O amba_files.zip
+~/.local/bin/gdown "1nLXFhptDo2mnUlZsw8pTWyAVpV49W20U](https://drive.google.com/file/d/1nLXFhptDo2mnUlZsw8pTWyAVpV49W20U/view?usp=drive_link" -O amba_files.zip
 
 # Extract
 unzip amba_files.zip
@@ -298,7 +298,7 @@ ls amba_files/
 # Output: 1.txt  2.txt  3.txt  4.txt  5.txt  6.txt  7.txt
 ```
 
-### Poin B, C, D — Compile & Mount
+### Poin B, C, D — Compile & mount
 
 ```bash
 # Buat mount point
@@ -390,10 +390,13 @@ Tujuan Mas Amba: -7.957382728443728, 112.4698688227961, 23:59 WIB
 
 ## Output
 1. <img width="703" height="117" alt="Screenshot 2026-05-17 145246" src="https://github.com/user-attachments/assets/d07a28f3-3685-4cd6-b39f-d6392f05604a" />
+   
    ls pertama memastikan zip sudah terhapus. ls amba_files/ memastikan ketujuh file log ekspedisi ada. ls amba_files.zip 2>&1 memastikan zip benar-benar sudah tidak ada.
 2. <img width="707" height="196" alt="Screenshot 2026-05-17 145538" src="https://github.com/user-attachments/assets/3d2d2071-70c0-492d-bec5-b1a3022dc987" />
+   
    Membandingkan setiap file di mnt/ dengan file aslinya di amba_files/ menggunakan diff. Jika tidak ada perbedaan satu byte pun, mencetak "OK". Ini membuktikan bahwa FUSE berhasil meneruskan (passthrough) isi file secara identik dari source ke mount point.
 3. <img width="732" height="121" alt="Screenshot 2026-05-17 150151" src="https://github.com/user-attachments/assets/5581f573-6e66-4ca1-9331-29f398b8ec27" />
+   
    ls mnt/ Menampilkan isi mount directory. Harus muncul 8 file: 1.txt sampai 7.txt ditambah tujuan.txt.  
 
 ls amba_files/ Menampilkan isi source directory. Harus tetap 7 file saja — membuktikan tujuan.txt tidak pernah dibuat secara fisik di disk.  
@@ -401,6 +404,7 @@ ls amba_files/ Menampilkan isi source directory. Harus tetap 7 file saja — mem
 ls amba_files/tujuan.txt 2>&1 Membuktikan secara eksplisit bahwa tujuan.txt tidak exist di amba_files/. File ini murni virtual, hanya hidup di dalam FUSE.  
 
 4. <img width="737" height="254" alt="Screenshot 2026-05-17 150525" src="https://github.com/user-attachments/assets/0a12cb7b-a1c1-44ea-a0fd-1e28691be298" />
+   
    cat mnt/tujuan.txt Membaca isi tujuan.txt. Isinya dibangkitkan on-the-fly saat dibaca — program membuka 1.txt sampai 7.txt, mencari baris yang diawali KOORD:, menggabungkan semua fragmennya secara berurutan, lalu mengembalikan hasilnya dalam format Tujuan Mas Amba: <koordinat>.  
 
 stat mnt/tujuan.txt Menampilkan metadata file virtual. Ukuran file (Size) harus konsisten dengan panjang string koordinat, permission 0444 (read-only), dan timestamp epoch 1970-01-01 sesuai yang kita hardcode di program.  
