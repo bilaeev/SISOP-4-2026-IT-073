@@ -1,4 +1,4 @@
-# Soal 1 — FUSE Kenz Rescue 🗻
+# Soal 1 — FUSE Kenz Rescue
 
 > **Lore:** Sebastian, fans nomor satu Asisten Kenz, harus menemukan koordinat ritual di Puncak Gunung Kawi sebelum tengah malam. Satu-satunya petunjuk: flashdisk merah `TOYYIBAN 32GB` berisi tujuh catatan log ekspedisi, masing-masing menyimpan satu fragmen koordinat di baris `KOORD:`. Dengan FUSE, Sebastian bisa membaca ketujuh fragmen itu tanpa menyentuh satu byte pun di flashdisk — lalu menggabungkannya menjadi koordinat lengkap lewat file virtual `tujuan.txt`.
 
